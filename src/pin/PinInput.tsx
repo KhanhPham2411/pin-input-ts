@@ -62,7 +62,14 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
           onChange={(e: ChangeEvent<HTMLInputElement>) => handlePinChange(index, e.target.value)}
           onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
             // Allow navigating back to the previous box if the current box is empty and the user presses the backspace key
-            if (e.key === 'Backspace' && pin === '' && inputRefs.current[index - 1]) {
+            if (e.key === 'Backspace' && inputRefs.current[index - 1]) {
+              const newPins = [...pins];
+              newPins[index] = ''; // Limit to one character
+              inputRefs.current[index].value = ''
+              newPins[index - 1] = ''; // Limit to one character
+              inputRefs.current[index - 1].value = ''
+              setPins(newPins);
+
               inputRefs.current[index - 1].focus();
             }
           }}
