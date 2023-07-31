@@ -14,6 +14,7 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
   useEffect(() => {
     // Initialize the ref array with the input elements
     inputRefs.current = inputRefs.current.slice(0, pinCount);
+    setPins(Array(pinCount).fill(''));
 
     // Focus on the first input when the component mounts
     if (inputRefs.current[0]) {
@@ -44,8 +45,6 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
     }
   };
 
-  const getMaskedValue = (value: string) => (secretMode ? '*' : value);
-
   return (
     <div>
       {pins.map((pin, index) => (
@@ -53,7 +52,6 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
           key={index}
           ref={(input) => (inputRefs.current[index] = input!)}
           type={secretMode ? 'password' : 'text'}
-          value={getMaskedValue(pin)}
           onChange={(e: ChangeEvent<HTMLInputElement>) => handlePinChange(index, e.target.value)}
           onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
             // Allow navigating back to the previous box if the current box is empty and the user presses the backspace key
