@@ -39,6 +39,21 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
     }
   };
 
+  const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    const pastedData = event.clipboardData.getData('text/plain');
+    const sanitizedData = pastedData.replace(/[^0-9]/g, '');
+
+    if (sanitizedData.length <= pinCount) {
+      // If the pasted data fits in the pinCount, update the state with the pasted data
+      const newPins = [...pins];
+      sanitizedData.split('').forEach((digit, index) => {
+        newPins[index] = digit;
+      });
+      setPins(newPins);
+    }
+  };
+
   const getMaskedValue = (value: string) => (secretMode ? '*' : value);
 
   return (
@@ -51,6 +66,7 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
           pattern="[0-9]"
           value={getMaskedValue(pin)}
           onChange={(e: ChangeEvent<HTMLInputElement>) => handlePinChange(index, e.target.value)}
+          onPaste={handlePaste}
           onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
             // Allow navigating back to the previous box if the current box is empty and the user presses the backspace key
             if (e.key === 'Backspace' && pin === '' && inputRefs.current[index - 1]) {
