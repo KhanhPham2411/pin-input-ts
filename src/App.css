@@ -47,6 +47,8 @@
   font-size: 16px;
   color: #3498db;
   margin-right: 10px;
+  width: 120px; /* Adjust this width to control the label indentation */
+  text-align: right;
 }
 
 /* Custom styles for inputs */
@@ -64,7 +66,7 @@
   border-color: #2980b9;
 }
 
-
+/* Custom styles for the "Set Default" button */
 .fancy-button {
   padding: 10px 20px;
   font-size: 16px;
@@ -75,6 +77,7 @@
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
 .fancy-button:hover {

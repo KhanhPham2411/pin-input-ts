@@ -38,7 +38,7 @@ function App() {
     <div className="App">
       <h1>Pin Input Component</h1>
       <div className="input-group">
-        <label htmlFor="pinCountInput" className="fancy-label">Pin Count: </label>
+        <label htmlFor="pinCountInput" className="fancy-label">Pin Count:</label>
         <input
           id="pinCountInput"
           type="number"
@@ -49,7 +49,7 @@ function App() {
         />
       </div>
       <div className="input-group">
-        <label htmlFor="secretModeCheckbox" className="fancy-label">Secret Mode: </label>
+        <label htmlFor="secretModeCheckbox" className="fancy-label">Secret Mode:</label>
         <input
           id="secretModeCheckbox"
           type="checkbox"
@@ -59,7 +59,7 @@ function App() {
         />
       </div>
       <div className="input-group">
-        <label htmlFor="customPatternInput" className="fancy-label">Custom Pattern: </label>
+        <label htmlFor="customPatternInput" className="fancy-label">Custom Pattern:</label>
         <input
           id="customPatternInput"
           type="text"
