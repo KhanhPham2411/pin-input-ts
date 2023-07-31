@@ -32,7 +32,7 @@ interface ReactCodeInputProps {
   filterChars?: string[];
   filterCharsIsWhitelist?: boolean;
   pattern?: string;
-  inputMode?: 'verbatim' | 'latin' | 'latin-name' | 'latin-prose' | 'full-width-latin' | 'kana' | 'kana-name' | 'katakana' | 'numeric' | 'tel' | 'email' | 'url';
+  inputMode?: React.HTMLAttributes<HTMLInputElement>['inputMode'];
 }
 
 const ReactCodeInput: React.FC<ReactCodeInputProps> = ({
