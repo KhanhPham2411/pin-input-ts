@@ -16,6 +16,11 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
     inputRefs.current = inputRefs.current.slice(0, pinCount);
     setPins(Array(pinCount).fill(''));
 
+    for(let i =0; i < pinCount; i++) {
+      if(inputRefs.current[i]) {
+        inputRefs.current[i].value = '';
+      }
+    }
     // Focus on the first input when the component mounts
     if (inputRefs.current[0]) {
       inputRefs.current[0].focus();

@@ -13,8 +13,8 @@ function App() {
   };
 
   const handlePinCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newPinCount = parseInt(event.target.value, 10);
-    if (!isNaN(newPinCount) && newPinCount >= 1 && newPinCount <= 10) {
+    const newPinCount = parseInt(event.target.value);
+    if (!isNaN(newPinCount) && newPinCount >= 1) {
       setPinCount(newPinCount);
     }
   };
@@ -27,6 +27,13 @@ function App() {
     setCustomPattern(event.target.value);
   };
 
+  const handleResetPin = () => {
+    // Set the pins state to an array of empty strings (default values)
+    setPinCount(6);
+    setSecretMode(false);
+    setCustomPattern('[0-9]');
+  };
+
   return (
     <div className="App">
       <h1>Pin Input Component</h1>
@@ -36,7 +43,6 @@ function App() {
           id="pinCountInput"
           type="number"
           min="1"
-          max="10"
           value={pinCount}
           onChange={handlePinCountChange}
         />
@@ -59,6 +65,10 @@ function App() {
           onChange={handleCustomPatternChange}
         />
       </div>
+      <div className="input-group">
+        <button className="fancy-button" onClick={handleResetPin}>Set Default</button>
+      </div>
+
       <div className="input-group">
         <PinInput
           pinCount={pinCount}
