@@ -16,8 +16,8 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
     inputRefs.current = inputRefs.current.slice(0, pinCount);
     setPins(Array(pinCount).fill(''));
 
-    for(let i =0; i < pinCount; i++) {
-      if(inputRefs.current[i]) {
+    for (let i = 0; i < pinCount; i++) {
+      if (inputRefs.current[i]) {
         inputRefs.current[i].value = '';
       }
     }
@@ -52,6 +52,27 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
     }
   };
 
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const pastedData = e.clipboardData.getData('text');
+    const sanitizedData = pastedData.replace(/[^0-9]/g, '').slice(0, pinCount);
+
+    if (sanitizedData.length > 0) {
+      const newPins = [...pins];
+      for (let i = 0; i < sanitizedData.length; i++) {
+        newPins[i] = sanitizedData[i];
+        if (inputRefs.current[i]) {
+          inputRefs.current[i].value = sanitizedData[i];
+        }
+      }
+      setPins(newPins);
+
+      if (newPins.every((pin) => pin !== '') && onFilled) {
+        onFilled(newPins.join(''));
+      }
+    }
+    e.preventDefault();
+  };
+
   return (
     <div>
       {pins.map((pin, index) => (
@@ -65,14 +86,15 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
             if (e.key === 'Backspace' && inputRefs.current[index - 1]) {
               const newPins = [...pins];
               newPins[index] = ''; // Limit to one character
-              inputRefs.current[index].value = ''
+              inputRefs.current[index].value = '';
               newPins[index - 1] = ''; // Limit to one character
-              inputRefs.current[index - 1].value = ''
+              inputRefs.current[index - 1].value = '';
               setPins(newPins);
 
               inputRefs.current[index - 1].focus();
             }
           }}
+          onPaste={handlePaste} // Handle pasting
           size={1}
           maxLength={1}
           autoFocus={index === 0} // Set autoFocus on the first input
