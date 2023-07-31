@@ -60,7 +60,7 @@ const ReactCodeInput: React.FC<ReactCodeInputProps> = ({
   inputMode,
 }) => {
   const [input, setInput] = useState<string[]>([]);
-  const textInputRef = useRef<HTMLInputElement[]>([]);
+  const textInputRef = useRef<HTMLInputElement[]>(Array(fields).fill(null));
   const uuid = useRef(uuidv4());
 
   useEffect(() => {
@@ -272,7 +272,7 @@ const ReactCodeInput: React.FC<ReactCodeInputProps> = ({
       {input.map((value, i) => (
         <input
           ref={(ref) => {
-            textInputRef.current[i] = ref;
+            if (ref) textInputRef.current[i] = ref;
           }}
           id={`${uuid.current}-${i}`}
           data-id={i}
