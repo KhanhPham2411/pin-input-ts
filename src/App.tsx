@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <h1>Pin Input Component</h1>
-      <PinInput pinCount={3} />
+      <PinInput pinCount={3} secretMode={false} />
     </div>
   );
 }
