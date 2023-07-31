@@ -64,6 +64,7 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
           size={1}
           maxLength={1}
           autoFocus={index === 0} // Set autoFocus on the first input
+          style={{ width: '40px', height: '40px', fontSize: '24px', textAlign: 'center', marginRight: '5px' }}
         />
       ))}
     </div>
