@@ -5,7 +5,7 @@ import PinInput from './pin/PinInput';
 function App() {
   const [pinCount, setPinCount] = useState(6);
   const [secretMode, setSecretMode] = useState(false);
-  const [customPattern, setCustomPattern] = useState('');
+  const [customPattern, setCustomPattern] = useState('[0-9]');
 
   const handlePinFilled = (pin: string) => {
     // Do something with the filled PIN

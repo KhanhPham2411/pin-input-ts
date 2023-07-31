@@ -42,6 +42,8 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFil
       if (newPins.every((pin) => pin !== '') && onFilled) {
         onFilled(newPins.join(''));
       }
+    } else {
+      inputRefs.current[index].value = '';
     }
   };
 
