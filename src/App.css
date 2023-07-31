@@ -41,6 +41,30 @@
   }
 }
 
+/* Custom styles for labels */
+.fancy-label {
+  display: inline-block;
+  font-size: 16px;
+  color: #3498db;
+  margin-right: 10px;
+}
+
+/* Custom styles for inputs */
+.fancy-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #3498db;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease;
+}
+
+.fancy-input:focus {
+  outline: none;
+  border-color: #2980b9;
+}
+
+
 .fancy-button {
   padding: 10px 20px;
   font-size: 16px;

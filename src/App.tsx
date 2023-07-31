@@ -38,31 +38,34 @@ function App() {
     <div className="App">
       <h1>Pin Input Component</h1>
       <div className="input-group">
-        <label htmlFor="pinCountInput">Pin Count: </label>
+        <label htmlFor="pinCountInput" className="fancy-label">Pin Count: </label>
         <input
           id="pinCountInput"
           type="number"
           min="1"
           value={pinCount}
           onChange={handlePinCountChange}
+          className="fancy-input"
         />
       </div>
       <div className="input-group">
-        <label htmlFor="secretModeCheckbox">Secret Mode: </label>
+        <label htmlFor="secretModeCheckbox" className="fancy-label">Secret Mode: </label>
         <input
           id="secretModeCheckbox"
           type="checkbox"
           checked={secretMode}
           onChange={handleSecretModeChange}
+          className="fancy-input"
         />
       </div>
       <div className="input-group">
-        <label htmlFor="customPatternInput">Custom Pattern: </label>
+        <label htmlFor="customPatternInput" className="fancy-label">Custom Pattern: </label>
         <input
           id="customPatternInput"
           type="text"
           value={customPattern}
           onChange={handleCustomPatternChange}
+          className="fancy-input"
         />
       </div>
       <div className="input-group">
