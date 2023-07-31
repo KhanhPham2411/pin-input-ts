@@ -3,9 +3,10 @@ import React, { useState, ChangeEvent, useRef, useEffect } from 'react';
 interface PinInputProps {
   pinCount: number;
   secretMode?: boolean;
+  onFilled?: (pin: string) => void;
 }
 
-const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false }) => {
+const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false, onFilled }) => {
   const [pins, setPins] = useState<string[]>(Array(pinCount).fill(''));
   const inputRefs = useRef<HTMLInputElement[]>([]);
 
@@ -30,6 +31,11 @@ const PinInput: React.FC<PinInputProps> = ({ pinCount, secretMode = false }) => 
     const nextEmptyBoxIndex = newPins.findIndex((pin) => pin === '');
     if (nextEmptyBoxIndex !== -1 && inputRefs.current[nextEmptyBoxIndex]) {
       inputRefs.current[nextEmptyBoxIndex].focus();
+    }
+
+    // Invoke the onFilled callback when all boxes are filled
+    if (newPins.every((pin) => pin !== '') && onFilled) {
+      onFilled(newPins.join(''));
     }
   };
 
